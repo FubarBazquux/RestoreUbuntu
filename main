@@ -1,0 +1,8 @@
+#!/bin/bash
+
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
+
+sudo ./subroutines/update
+sudo ./subroutines/snaps
+sudo ./subroutines/apt
+./subroutines/configs $SCRIPT_DIR

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MAIN_DIR=$1
+
+# Git
+mkdir --parents ~/.config/git/
+mkdir --parents ~/Documents/Repos/
+cp --no-clobber $MAIN_DIR"/configs/git/config" ~/.config/git/config
+# Clone configs
+# Symlink configs
