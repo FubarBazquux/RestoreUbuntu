@@ -2,9 +2,23 @@
 
 MAIN_DIR=$1
 
-# Git
-mkdir --parents ~/.config/git/
-mkdir --parents ~/Documents/Repos/
-cp --no-clobber $MAIN_DIR"/configs/git/config" ~/.config/git/config
-# Clone configs
-# Symlink configs
+#######
+# Git #
+#######
+mkdir --parents $HOME/.config/git/
+REPOS_DIR=$HOME"/Documents/Repos/"
+mkdir --parents $REPOS_DIR
+cp --no-clobber $MAIN_DIR"/configs/git/config" $HOME/.config/git/config
+
+###########
+# Configs #
+###########
+CONFIGS_DIR=$REPOS_DIR"Configs/"
+if ! [ -d $CONFIGS_DIR ]; then
+	git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_DIR
+fi
+
+# Link configs
+if ! grep -q "source "$CONFIGS_DIR".bashrc.common" $HOME/.bashrc; then
+	echo -e "\nsource "$CONFIGS_DIR".bashrc.common" >> $HOME/.bashrc
+fi

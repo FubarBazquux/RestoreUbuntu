@@ -1,3 +1,8 @@
 #!/bin/bash
-apt -y install tmux
-apt -y install git
+if ! command -v tmux >/dev/null; then
+	apt -y install tmux
+fi
+
+if ! command -v tmux >/dev/null; then
+	apt -y install git
+fi
