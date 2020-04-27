@@ -1,3 +1,7 @@
 #!/bin/bash
-snap install barrier
-snap install --beta nvim --classic
+if ! command -v barrier >/dev/null; then
+	snap install barrier
+fi
+if ! command -v nvim >/dev/null; then
+	snap install --beta nvim --classic
+fi
