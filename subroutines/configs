@@ -6,9 +6,9 @@ MAIN_DIR=$1
 # Git #
 #######
 mkdir --parents $HOME/.config/git/
+cp --no-clobber $MAIN_DIR"/configs/git/config" $HOME/.config/git/config
 REPOS_DIR=$HOME"/Documents/Repos/"
 mkdir --parents $REPOS_DIR
-cp --no-clobber $MAIN_DIR"/configs/git/config" $HOME/.config/git/config
 
 ###########
 # Configs #
@@ -19,6 +19,26 @@ if ! [ -d $CONFIGS_DIR ]; then
 fi
 
 # Link configs
-if ! grep -q "source "$CONFIGS_DIR".bashrc.common" $HOME/.bashrc; then
-	echo -e "\nsource "$CONFIGS_DIR".bashrc.common" >> $HOME/.bashrc
+BASHRC=$HOME"/.bashrc"
+if ! grep -q "source "$CONFIGS_DIR".bashrc.common" $BASHRC; then
+	echo -e "\nsource "$CONFIGS_DIR".bashrc.common" >> $BASHRC
+fi
+
+TMUX_CONF=$HOME"/.tmux.conf"
+if ! test -f $TMUX_CONF; then
+	echo -e "source-file "$CONFIGS_DIR".tmux.conf.common" > $TMUX_CONF
+fi
+
+VIMRC=$HOME"/.vimrc"
+if ! test -f $VIMRC; then
+	echo -e "source "$CONFIGS_DIR".vimrc.common" > $VIMRC;
+fi
+
+NVIM_CONFIG_DIR=$HOME"/.config/nvim/"
+NVIM_INIT=$NVIM_CONFIG_DIR"init.vim"
+if ! test -f $NVIM_INIT; then
+	mkdir --parents $NVIM_CONFIG_DIR
+	echo -e "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > $NVIM_INIT;
+	echo -e "let &packpath = &runtimepath" >> $NVIM_INIT;
+	echo -e "source "$VIMRC >> $NVIM_INIT;
 fi
