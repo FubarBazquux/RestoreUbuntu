@@ -1,5 +1,5 @@
 [user]
-	name = Ryan Malkin
-	email = ryansmalkin@gmail.com
+    name = Ryan Malkin
+    email = ryansmalkin@gmail.com
 [core]
-	editor = nvim
+    editor = nvim

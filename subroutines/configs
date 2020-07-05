@@ -1,10 +1,13 @@
 #!/bin/bash
 
+echo "---------- CONFIGS START ----------"
+
 MAIN_DIR=$1
 
 #######
 # Git #
 #######
+echo "Git setup stuff"
 mkdir --parents $HOME/.config/git/
 cp --no-clobber $MAIN_DIR"/configs/git/config" $HOME/.config/git/config
 REPOS_DIR=$HOME"/Documents/Repos/"
@@ -15,30 +18,47 @@ mkdir --parents $REPOS_DIR
 ###########
 CONFIGS_DIR=$REPOS_DIR"Configs/"
 if ! [ -d $CONFIGS_DIR ]; then
-	git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_DIR
+    echo "Cloning Configs repo"
+    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_DIR
+else
+    echo "Skipping cloning configs repo, already present"
 fi
 
 # Link configs
 BASHRC=$HOME"/.bashrc"
 if ! grep -q "source "$CONFIGS_DIR".bashrc.common" $BASHRC; then
-	echo -e "\nsource "$CONFIGS_DIR".bashrc.common" >> $BASHRC
+    echo "Linking .bashrc.common"
+    echo -e "\nsource "$CONFIGS_DIR".bashrc.common" >> $BASHRC
+else
+    echo "Skipping linking .bashrc.common, already linked"
 fi
 
 TMUX_CONF=$HOME"/.tmux.conf"
 if ! test -f $TMUX_CONF; then
-	echo -e "source-file "$CONFIGS_DIR".tmux.conf.common" > $TMUX_CONF
+    echo "Linking .tmux.conf.common"
+    echo -e "source-file "$CONFIGS_DIR".tmux.conf.common" > $TMUX_CONF
+else
+    echo "Skipping linking .tmux.conf.common, already linked"
 fi
 
 VIMRC=$HOME"/.vimrc"
 if ! test -f $VIMRC; then
-	echo -e "source "$CONFIGS_DIR".vimrc.common" > $VIMRC;
+    echo "Linking .vimrc.common"
+    echo -e "source "$CONFIGS_DIR".vimrc.common" > $VIMRC;
+else
+    echo "Skipping linking .vimrc.common, already linked"
 fi
 
 NVIM_CONFIG_DIR=$HOME"/.config/nvim/"
 NVIM_INIT=$NVIM_CONFIG_DIR"init.vim"
 if ! test -f $NVIM_INIT; then
-	mkdir --parents $NVIM_CONFIG_DIR
-	echo -e "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > $NVIM_INIT;
-	echo -e "let &packpath = &runtimepath" >> $NVIM_INIT;
-	echo -e "source "$VIMRC >> $NVIM_INIT;
+    echo "Linking init.vim to .vimrc"
+    mkdir --parents $NVIM_CONFIG_DIR
+    echo -e "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > $NVIM_INIT;
+    echo -e "let &packpath = &runtimepath" >> $NVIM_INIT;
+    echo -e "source "$VIMRC >> $NVIM_INIT;
+else
+    echo "Skipping linking init.vim to .vimrc, already linked"
 fi
+
+echo "---------- CONFIGS END ---------"

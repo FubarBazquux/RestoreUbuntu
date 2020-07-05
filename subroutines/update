@@ -1,3 +1,5 @@
 #!/bin/bash
-apt update
-apt -y upgrade
+echo "---------- UPDATE START ----------"
+apt update 1>/dev/null
+apt -y upgrade 1>/dev/null
+echo "---------- UPDATE COMPLETE ----------"

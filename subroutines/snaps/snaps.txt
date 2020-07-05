@@ -1,2 +1,7 @@
 barrier
+code --classic
+keepassxc
 nvim --beta --classic
+spotify
+vlc
+wavebox
