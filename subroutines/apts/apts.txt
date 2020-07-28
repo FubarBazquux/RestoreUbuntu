@@ -5,4 +5,5 @@ git
 gnome-tweaks
 gparted
 python3-pip
+thunderbird
 tmux
