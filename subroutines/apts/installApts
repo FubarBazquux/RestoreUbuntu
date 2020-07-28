@@ -8,7 +8,7 @@ while read line; do
     app=$(echo $line | sed 's/ .*//')
     if ! dpkg -s $app &>/dev/null; then
         echo "Installing "$app
-        apt -y install $line
+        apt -y install $line &>/dev/null
     else
         echo "Skipping "$app", already installed"
     fi
