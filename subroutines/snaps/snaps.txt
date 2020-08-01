@@ -4,4 +4,3 @@ keepassxc
 nvim --beta --classic
 spotify
 vlc
-wavebox

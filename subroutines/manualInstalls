@@ -2,6 +2,18 @@
 
 echo "---------- MANUAL INSTALLS START ----------"
 
+# AWS CLI
+if ! which aws &>/dev/null; then
+    echo "Installing AWS CLI"
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+    rm awscliv2.zip
+    rm -r aws
+else
+    echo "Skipping AWS CLI, already installed"
+fi
+
 # Chrome
 if ! dpkg -s google-chrome-stable &>/dev/null; then
     echo "Installing Chrome"
@@ -75,6 +87,17 @@ if ! dpkg -s sublime-text &>/dev/null; then
     apt install -y sublime-text 1>/dev/null
 else
     echo "Skipping Sublime, already installed"
+fi
+
+# Wavebox
+if ! dpkg -s wavebox &>/dev/null; then
+    echo "Installing Wavebox"
+    wget https://download.wavebox.app/latest/stable/linux/deb
+    mv deb wavebox.deb
+    apt install -y ./wavebox.deb 1>/dev/null
+    rm wavebox.deb
+else
+    echo "Skipping Wavebox, already installed"
 fi
 
 # Wine

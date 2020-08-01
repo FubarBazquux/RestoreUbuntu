@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cd ~
+
+backupFile=$HOSTNAME"_"$(date +%F)".tar.gz"
+
+tar -cpzf $backupFile Documents Downloads Music Pictures Videos .bashrc.$HOSTNAME
+# Restore with
+# sudo tar -xpzf $backupFile [-C /directory/to/extract/to] --numeric-owner
+
+aws glacier upload-archive --account-id - --vault-name PCBackups --body $backupFile
+
+rm $backupFile
