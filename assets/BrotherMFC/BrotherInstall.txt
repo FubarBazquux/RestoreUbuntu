@@ -1,0 +1,7 @@
+Search for a new version of the installer
+Device is MFC-7860DW
+
+gunzip the .gz
+sudo su
+bash linux-brprinter-installer-*.*.*-* MFC-7860DW
+Don't specify the DeviceURI if using USB to connect to the printer
