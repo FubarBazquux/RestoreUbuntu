@@ -53,8 +53,8 @@ fi
 if ! dpkg -s megasync &>/dev/null; then
     echo "Installing Mega"
     wget https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
-    apt install -y ./megasync-xUbuntu_20.04_amd64.deb 1>dev/null
-    rm megasync-xubuntu_20.04_amd64.deb
+    apt install -y ./megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
+    rm megasync-xUbuntu_20.04_amd64.deb
 else
     echo "Skipping Mega, already installed"
 fi
