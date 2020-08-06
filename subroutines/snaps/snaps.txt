@@ -1,6 +1,7 @@
 barrier
 code --classic
 keepassxc
+libreoffice
 nvim --beta --classic
 spotify
 vlc
