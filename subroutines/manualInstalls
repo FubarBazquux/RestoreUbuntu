@@ -18,7 +18,7 @@ fi
 if ! dpkg -s google-chrome-stable &>/dev/null; then
     echo "Installing Chrome"
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1>/dev/null
-    apt install -y ./google-chrome-stable_current_amd64.deb 1>/dev/null
+    apt-get install -y ./google-chrome-stable_current_amd64.deb 1>/dev/null
     rm google-chrome-stable_current_amd64.deb
 else
     echo "Skipping Chrome, already installed"
@@ -29,12 +29,12 @@ if ! dpkg -s psensor &>/dev/null; then
     echo "Installing psensor"
     if ! dpkg -s lm-sensors &>/dev/null; then
         echo "Installing lm-sensors"
-        apt install -y lm-sensors 1>/dev/null
+        apt-get install -y lm-sensors 1>/dev/null
         sensors-detect
     else
         echo "Skipping lm-sensors, already installed"
     fi
-    apt install -y psensor 1>/dev/null
+    apt-get install -y psensor 1>/dev/null
 else
     echo "Skipping psensor, already installed"
 fi
@@ -43,7 +43,7 @@ fi
 if ! dpkg -s zoom &>/dev/null; then
     echo "Installing Zoom"
     wget https://zoom.us/client/latest/zoom_amd64.deb 1>/dev/null
-    apt install -y ./zoom_amd64.deb 1>/dev/null
+    apt-get install -y ./zoom_amd64.deb 1>/dev/null
     rm zoom_amd64.deb
 else
     echo "Skipping Zoom, already installed"
@@ -53,7 +53,7 @@ fi
 if ! dpkg -s megasync &>/dev/null; then
     echo "Installing Mega"
     wget https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
-    apt install -y ./megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
+    apt-get install -y ./megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
     rm megasync-xUbuntu_20.04_amd64.deb
 else
     echo "Skipping Mega, already installed"
@@ -62,7 +62,7 @@ fi
 if ! dpkg -s nautilus-megasync &>/dev/null; then
     echo "Installing Mega Nautilus plugin"
     wget https://mega.nz/linux/MEGAsync/xUbuntu_20.04/amd64/nautilus-megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
-    apt install -y ./nautilus-megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
+    apt-get install -y ./nautilus-megasync-xUbuntu_20.04_amd64.deb 1>/dev/null
     rm nautilus-megasync-xUbuntu_20.04_amd64.deb
 else
     echo "Skipping Mega Nautilus plugin, already installed"
@@ -72,7 +72,7 @@ fi
 if ! dpkg -s steam-launcher &>/dev/null; then
     echo "Installing Steam"
     wget https://steamcdn-a.akamaihd.net/client/installer/steam.deb 1>/dev/null
-    apt install -y ./steam.deb 1>/dev/null
+    apt-get install -y ./steam.deb 1>/dev/null
     rm steam.deb
 else
     echo "Skipping Steam, already installed"
@@ -83,10 +83,21 @@ if ! dpkg -s sublime-text &>/dev/null; then
     echo "Installing Sublime"
     wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | apt-key add -
     echo "deb https://download.sublimetext.com/ apt/stable/" | tee /etc/apt/sources.list.d/sublime-text.list
-    apt update 1>/dev/null
-    apt install -y sublime-text 1>/dev/null
+    apt-get update 1>/dev/null
+    apt-get install -y sublime-text 1>/dev/null
 else
     echo "Skipping Sublime, already installed"
+fi
+
+# Syncthing
+if ! dpkg -s syncthing &>/dev/null; then
+    echo "Installing Syncthing"
+    curl -s https://syncthing.net/release-key.txt | sudo apt-key add -
+    echo "deb https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+    sudo apt-get update 1>/dev/null
+    sudo apt-get install -y syncthing 1>/dev/null
+else
+    echo "Skipping Syncthing, already installed"
 fi
 
 # Wavebox
@@ -94,7 +105,7 @@ if ! dpkg -s wavebox &>/dev/null; then
     echo "Installing Wavebox"
     wget https://download.wavebox.app/latest/stable/linux/deb
     mv deb wavebox.deb
-    apt install -y ./wavebox.deb 1>/dev/null
+    apt-get install -y ./wavebox.deb 1>/dev/null
     rm wavebox.deb
 else
     echo "Skipping Wavebox, already installed"
@@ -105,8 +116,8 @@ if ! dpkg -s winehq-stable &>/dev/null; then
     echo "Installing Wine"
     wget -O - https://dl.winehq.org/wine-builds/winehq.key | apt-key add -
     add-apt-repository 'deb https://dl.winehq.org/wine-builds/ubuntu/ focal main' 1>/dev/null
-    apt update 1>/dev/null
-    apt install -y --install-recommends winehq-stable 1>/dev/null
+    apt-get update 1>/dev/null
+    apt-get install -y --install-recommends winehq-stable 1>/dev/null
 else
     echo "Skipping Wine, already installed"
 fi
@@ -115,7 +126,7 @@ fi
 if ! dpkg -s veracrypt &>/dev/null; then
     echo "Installing Veracrypt"
     wget https://launchpad.net/veracrypt/trunk/1.24-update4/+download/veracrypt-1.24-Update4-Ubuntu-20.04-amd64.deb 1>/dev/null
-    apt install -y ./veracrypt-1.24-Update4-Ubuntu-20.04-amd64.deb 1>/dev/null
+    apt-get install -y ./veracrypt-1.24-Update4-Ubuntu-20.04-amd64.deb 1>/dev/null
     rm veracrypt-1.24-Update4-Ubuntu-20.04-amd64.deb
 else
     echo "Skipping Veracrypt, already installed"

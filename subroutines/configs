@@ -10,7 +10,7 @@ MAIN_DIR=$1
 echo "Git setup stuff"
 mkdir --parents $HOME/.config/git/
 cp --no-clobber $MAIN_DIR"/configs/git/config" $HOME/.config/git/config
-REPOS_DIR=$HOME"/Documents/Repos/"
+REPOS_DIR=$HOME"/Repos/"
 mkdir --parents $REPOS_DIR
 
 ###########
