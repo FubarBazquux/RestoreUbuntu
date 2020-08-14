@@ -13,3 +13,5 @@ if ! test -f $BACKUP_FILE; then
 else
     echo "Skipping placing backup script, already present"
 fi
+
+echo "---------- BACKUP SCRIPT END ----------"

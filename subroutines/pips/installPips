@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "---------- PIPS ------------"
+echo "---------- PIPS START ------------"
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 

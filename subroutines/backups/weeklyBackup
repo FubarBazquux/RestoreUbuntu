@@ -4,7 +4,7 @@ cd ~
 
 backupFile=$HOSTNAME"_"$(date +%F)".tar.gz"
 
-tar -cpzf $backupFile Documents Downloads Music Pictures Videos .bashrc.$HOSTNAME
+tar -cpzf $backupFile Documents Downloads Music Pictures Repos Videos .bashrc.$HOSTNAME
 # Restore with
 # sudo tar -xpzf $backupFile [-C /directory/to/extract/to] --numeric-owner
 
