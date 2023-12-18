@@ -33,9 +33,11 @@ else
     echo "Skipping linking .bashrc.common, already linked"
 fi
 
-TMUX_CONF=$HOME"/.tmux.conf"
+TMUX_CONFIG_DIR=$HOME"/.config/tmux/"
+TMUX_CONF=$TMUX_CONFIG_DIR"tmux.conf"
 if ! test -f $TMUX_CONF; then
     echo "Linking .tmux.conf.common"
+    mkdir --parents $TMUX_CONFIG_DIR
     echo -e "source-file "$CONFIGS_DIR".tmux.conf.common" > $TMUX_CONF
 else
     echo "Skipping linking .tmux.conf.common, already linked"
@@ -54,8 +56,6 @@ NVIM_INIT=$NVIM_CONFIG_DIR"init.vim"
 if ! test -f $NVIM_INIT; then
     echo "Linking init.vim to .vimrc"
     mkdir --parents $NVIM_CONFIG_DIR
-    echo -e "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > $NVIM_INIT;
-    echo -e "let &packpath = &runtimepath" >> $NVIM_INIT;
     echo -e "source "$VIMRC >> $NVIM_INIT;
 else
     echo "Skipping linking init.vim to .vimrc, already linked"

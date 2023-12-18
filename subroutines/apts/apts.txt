@@ -4,3 +4,6 @@ git
 gnome-tweaks
 gparted
 python3-pip
+unrar
+virtualbox
+virtualbox-ext-pack

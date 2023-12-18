@@ -1,2 +1,0 @@
-Example /etc/crontab entry:
-0 0 * * 0   [user]  /full/path/to/weeklyBackup
