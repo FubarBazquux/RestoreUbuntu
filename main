@@ -13,4 +13,4 @@ sudo ./subroutines/manualInstalls
 ./subroutines/backups/setup $SCRIPT_DIR
 
 echo "Complete"
-echo "Remember to set up backup cron job"
+echo "Remember to set up AWS CLI and backup cron job"
