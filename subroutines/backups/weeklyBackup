@@ -5,7 +5,7 @@ cd ~
 backupFile=$HOSTNAME"_"$(date +%F)".tar.gz"
 
 tar -cpzf $backupFile Documents Downloads Music Pictures Repos Videos
-# Restore with
-# sudo tar -xpzf $backupFile [-C /directory/to/extract/to] --numeric-owner
+# Restore by running the following from a clean home directory:
+# sudo tar -xpzf $backupFile
 
-aws s3 mv $backupFile ryanmalkinpcbackups
+aws s3 mv $backupFile s3://ryanmalkinpcbackups
