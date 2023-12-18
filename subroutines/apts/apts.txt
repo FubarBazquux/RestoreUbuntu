@@ -1,10 +1,6 @@
-curl
 exfat-fuse
 exfat-utils
-gimp
 git
 gnome-tweaks
 gparted
 python3-pip
-thunderbird
-tmux

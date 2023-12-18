@@ -1,7 +1,11 @@
 barrier
 code --classic
+curl
+gimp
 keepassxc
 libreoffice
 nvim --beta --classic
 spotify
+thunderbird
+tmux-non-dead --classic
 vlc
