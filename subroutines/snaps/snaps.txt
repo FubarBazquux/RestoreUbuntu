@@ -9,7 +9,6 @@ nvim --beta --classic
 spotify
 steam
 sublime-text --classic
-thunderbird
 tmux-non-dead --classic
 vlc
 zoom-client
