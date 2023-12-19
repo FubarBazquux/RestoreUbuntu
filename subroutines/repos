@@ -1,0 +1,11 @@
+#!/bin/bash
+
+echo "---------- REPOS START ----------"
+
+echo "Configs"
+CONFIGS_REPO=$HOME/Repos/Configs
+if ! test -d $CONFIGS_REPO; then
+    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO
+fi
+
+echo "---------- REPOS END ----------"

@@ -8,6 +8,7 @@ sudo ./subroutines/update
 sudo ./subroutines/snaps/installSnaps
 sudo ./subroutines/apts/installApts
 sudo ./subroutines/manualInstalls
+./subroutines/repos
 ./subroutines/configs $SCRIPT_DIR
 ./subroutines/backups/setup $SCRIPT_DIR
 
