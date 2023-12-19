@@ -2,63 +2,66 @@
 
 echo "---------- CONFIGS START ----------"
 
-MAIN_DIR=$1
+PROJECT_DIR=$1
+CONFIGS_SUBMODULE_DIR=$PROJECT_DIR"/Configs"
 
-#######
-# Git #
-#######
-echo "Git setup stuff"
-mkdir --parents $HOME/.config/git/
-cp --no-clobber $MAIN_DIR"/configs/git/config" $HOME/.config/git/config
-REPOS_DIR=$HOME"/Repos/"
-mkdir --parents $REPOS_DIR
+echo "Git"
+GIT_CONFIG_DIR=$HOME/.config/git
+GIT_CONF=$GIT_CONFIG_DIR/config
+mkdir --parents $GIT_CONFIG_DIR
+if test -f $GIT_CONF; then
+    mv $GIT_CONF $GIT_CONF.old
+fi
+if test -f $HOME/.gitconfig; then
+    mv $HOME/.gitconfig $HOME/.gitconfig.old
+fi
+echo "[include]" > $GIT_CONF
+echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig" >> $GIT_CONF
 
-###########
-# Configs #
-###########
-CONFIGS_DIR=$REPOS_DIR"Configs/"
-if ! [ -d $CONFIGS_DIR ]; then
-    echo "Cloning Configs repo"
-    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_DIR
-else
-    echo "Skipping cloning configs repo, already present"
+echo "Set up Git repos"
+REPOS_DIR=$HOME/Repos
+if ! test -d $REPOS_DIR; then
+    mkdir $REPOS_DIR
+fi
+CONFIGS_REPO=$REPOS_DIR/Configs
+if ! test -d $CONFIGS_REPO; then
+    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO
+fi
+RESTOREUBUNTU_REPO=$REPOS_DIR/RestoreUbuntu
+if ! test -d $RESTOREUBUNTU_REPO; then
+    git clone https://github.com/FubarBazquux/RestoreUbuntu.git $RESTOREUBUNTU_REPO
 fi
 
-# Link configs
-BASHRC=$HOME"/.bashrc"
-if ! grep -q "source "$CONFIGS_DIR".bashrc.common" $BASHRC; then
-    echo "Linking .bashrc.common"
-    echo -e "\nsource "$CONFIGS_DIR".bashrc.common" >> $BASHRC
-else
-    echo "Skipping linking .bashrc.common, already linked"
+echo "Bash"
+BASHRC=$HOME/.bashrc
+if test -f $BASHRC; then
+    mv $BASHRC $BASHRC.old
 fi
+echo "source $CONFIGS_SUBMODULE_DIR/.bashrc.common" > $BASHRC
 
-TMUX_CONFIG_DIR=$HOME"/.config/tmux/"
-TMUX_CONF=$TMUX_CONFIG_DIR"tmux.conf"
-if ! test -f $TMUX_CONF; then
-    echo "Linking .tmux.conf.common"
-    mkdir --parents $TMUX_CONFIG_DIR
-    echo -e "source-file "$CONFIGS_DIR".tmux.conf.common" > $TMUX_CONF
-else
-    echo "Skipping linking .tmux.conf.common, already linked"
+echo "Tmux"
+TMUX_CONFIG_DIR=$HOME/.config/tmux
+TMUX_CONF=$TMUX_CONFIG_DIR/tmux.conf
+mkdir --parents $TMUX_CONFIG_DIR
+if test -f $TMUX_CONF; then
+    mv $TMUX_CONF $TMUX_CONF.old
 fi
+echo "source-file $CONFIGS_SUBMODULE_DIR/.tmux.conf.common" > $TMUX_CONF
 
+echo "Vim"
 VIMRC=$HOME"/.vimrc"
-if ! test -f $VIMRC; then
-    echo "Linking .vimrc.common"
-    echo -e "source "$CONFIGS_DIR".vimrc.common" > $VIMRC;
-else
-    echo "Skipping linking .vimrc.common, already linked"
+if test -f $VIMRC; then
+    mv $VIMRC $VIMRC.old
 fi
+echo "source $CONFIGS_SUBMODULE_DIR/.vimrc.common" > $VIMRC
 
-NVIM_CONFIG_DIR=$HOME"/.config/nvim/"
-NVIM_INIT=$NVIM_CONFIG_DIR"init.vim"
-if ! test -f $NVIM_INIT; then
-    echo "Linking init.vim to .vimrc"
-    mkdir --parents $NVIM_CONFIG_DIR
-    echo -e "source "$VIMRC >> $NVIM_INIT;
-else
-    echo "Skipping linking init.vim to .vimrc, already linked"
+echo "Nvim"
+NVIM_CONFIG_DIR=$HOME"/.config/nvim"
+NVIM_INIT=$NVIM_CONFIG_DIR/init.vim
+mkdir --parents $NVIM_CONFIG_DIR
+if test -f $NVIM_INIT; then
+    mv $NVIM_INIT $NVIM_INIT.old
 fi
+echo "source $VIMRC" > $NVIM_INIT
 
 echo "---------- CONFIGS END ---------"
