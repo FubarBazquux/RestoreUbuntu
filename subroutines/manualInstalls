@@ -16,8 +16,9 @@ fi
 if ! dpkg -s syncthing &>/dev/null; then
     echo "Installing Syncthing"
     mkdir -p /etc/apt/keyrings
-    curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
-    echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+    wget https://syncthing.net/release-key.gpg
+    mv release-key.gpg /etc/apt/keyrings/syncthing-archive-keyring.gpg
+    echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" > /etc/apt/sources.list.d/syncthing.list
     apt-get update 1>/dev/null
     apt-get install -y syncthing 1>/dev/null
 else

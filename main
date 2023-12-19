@@ -7,7 +7,7 @@ SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 sudo ./subroutines/update
 sudo ./subroutines/snaps/installSnaps
 sudo ./subroutines/apts/installApts
-sudo ./subroutines/pips/installPips
+./subroutines/pips/installPips
 sudo ./subroutines/manualInstalls
 ./subroutines/configs $SCRIPT_DIR
 ./subroutines/backups/setup $SCRIPT_DIR

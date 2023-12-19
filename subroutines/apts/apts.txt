@@ -1,6 +1,6 @@
 barrier
 exfat-fuse
-exfat-utils
+exfatprogs
 git
 gnome-tweaks
 gparted

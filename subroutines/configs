@@ -11,6 +11,12 @@ echo "---------- CONFIGS START ----------"
 PROJECT_DIR=$1
 CONFIGS_SUBMODULE_DIR=$PROJECT_DIR"/Configs"
 
+echo "Set up Git repos"
+CONFIGS_REPO=$HOME/Repos/Configs
+if ! test -d $CONFIGS_REPO; then
+    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO
+fi
+
 echo "Git"
 GIT_CONFIG_DIR=$HOME/.config/git
 GIT_CONF=$GIT_CONFIG_DIR/config
@@ -19,18 +25,6 @@ backupOldConfig $GIT_CONF
 backupOldConfig $HOME/.gitconfig
 echo "[include]" > $GIT_CONF
 echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig" >> $GIT_CONF
-
-echo "Set up Git repos"
-REPOS_DIR=$HOME/Repos
-mkdir --parents $REPOS_DIR
-CONFIGS_REPO=$REPOS_DIR/Configs
-if ! test -d $CONFIGS_REPO; then
-    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO
-fi
-RESTOREUBUNTU_REPO=$REPOS_DIR/RestoreUbuntu
-if ! test -d $RESTOREUBUNTU_REPO; then
-    git clone https://github.com/FubarBazquux/RestoreUbuntu.git $RESTOREUBUNTU_REPO
-fi
 
 echo "Bash"
 BASHRC=$HOME/.bashrc
