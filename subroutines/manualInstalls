@@ -5,7 +5,7 @@ echo "---------- MANUAL INSTALLS START ----------"
 # Chrome
 if ! dpkg -s google-chrome-stable &>/dev/null; then
     echo "Installing Chrome"
-    wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1>/dev/null
+    wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1>/dev/null
     apt-get install -y ./google-chrome-stable_current_amd64.deb 1>/dev/null
     rm google-chrome-stable_current_amd64.deb
 else
@@ -16,7 +16,7 @@ fi
 if ! dpkg -s syncthing &>/dev/null; then
     echo "Installing Syncthing"
     mkdir -p /etc/apt/keyrings
-    wget https://syncthing.net/release-key.gpg
+    wget -q https://syncthing.net/release-key.gpg 1>/dev/null
     mv release-key.gpg /etc/apt/keyrings/syncthing-archive-keyring.gpg
     echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" > /etc/apt/sources.list.d/syncthing.list
     apt-get update 1>/dev/null
@@ -28,7 +28,7 @@ fi
 # Wavebox
 if ! dpkg -s wavebox &>/dev/null; then
     echo "Installing Wavebox"
-    wget https://download.wavebox.app/latest/stable/linux/deb
+    wget -q https://download.wavebox.app/latest/stable/linux/deb 1>/dev/null
     mv deb wavebox.deb
     apt-get install -y ./wavebox.deb 1>/dev/null
     rm wavebox.deb

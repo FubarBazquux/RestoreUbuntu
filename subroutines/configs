@@ -24,7 +24,7 @@ mkdir --parents $GIT_CONFIG_DIR
 backupOldConfig $GIT_CONF
 backupOldConfig $HOME/.gitconfig
 echo "[include]" > $GIT_CONF
-echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig" >> $GIT_CONF
+echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig.common" >> $GIT_CONF
 
 echo "Bash"
 BASHRC=$HOME/.bashrc
