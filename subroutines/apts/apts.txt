@@ -1,3 +1,4 @@
+barrier
 exfat-fuse
 exfat-utils
 git
@@ -6,4 +7,3 @@ gparted
 python3-pip
 unrar
 virtualbox
-virtualbox-ext-pack

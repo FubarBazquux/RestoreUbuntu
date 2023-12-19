@@ -1,11 +1,10 @@
 aws-cli --classic
-barrier
 code --classic
 curl
 gimp
 keepassxc
 libreoffice
-nvim --beta --classic
+nvim --classic
 spotify
 steam
 sublime-text --classic
