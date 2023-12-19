@@ -1,5 +1,11 @@
 #!/bin/bash
 
+backupOldConfig () {
+    if test -f $1; then
+        mv $1 $1.old
+    fi
+}
+
 echo "---------- CONFIGS START ----------"
 
 PROJECT_DIR=$1
@@ -9,20 +15,14 @@ echo "Git"
 GIT_CONFIG_DIR=$HOME/.config/git
 GIT_CONF=$GIT_CONFIG_DIR/config
 mkdir --parents $GIT_CONFIG_DIR
-if test -f $GIT_CONF; then
-    mv $GIT_CONF $GIT_CONF.old
-fi
-if test -f $HOME/.gitconfig; then
-    mv $HOME/.gitconfig $HOME/.gitconfig.old
-fi
+backupOldConfig $GIT_CONF
+backupOldConfig $HOME/.gitconfig
 echo "[include]" > $GIT_CONF
 echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig" >> $GIT_CONF
 
 echo "Set up Git repos"
 REPOS_DIR=$HOME/Repos
-if ! test -d $REPOS_DIR; then
-    mkdir $REPOS_DIR
-fi
+mkdir --parents $REPOS_DIR
 CONFIGS_REPO=$REPOS_DIR/Configs
 if ! test -d $CONFIGS_REPO; then
     git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO
@@ -34,34 +34,26 @@ fi
 
 echo "Bash"
 BASHRC=$HOME/.bashrc
-if test -f $BASHRC; then
-    mv $BASHRC $BASHRC.old
-fi
+backupOldConfig $BASHRC
 echo "source $CONFIGS_SUBMODULE_DIR/.bashrc.common" > $BASHRC
 
 echo "Tmux"
 TMUX_CONFIG_DIR=$HOME/.config/tmux
 TMUX_CONF=$TMUX_CONFIG_DIR/tmux.conf
 mkdir --parents $TMUX_CONFIG_DIR
-if test -f $TMUX_CONF; then
-    mv $TMUX_CONF $TMUX_CONF.old
-fi
+backupOldConfig $TMUX_CONF
 echo "source-file $CONFIGS_SUBMODULE_DIR/.tmux.conf.common" > $TMUX_CONF
 
 echo "Vim"
 VIMRC=$HOME"/.vimrc"
-if test -f $VIMRC; then
-    mv $VIMRC $VIMRC.old
-fi
+backupOldConfig $VIMRC
 echo "source $CONFIGS_SUBMODULE_DIR/.vimrc.common" > $VIMRC
 
 echo "Nvim"
 NVIM_CONFIG_DIR=$HOME"/.config/nvim"
 NVIM_INIT=$NVIM_CONFIG_DIR/init.vim
 mkdir --parents $NVIM_CONFIG_DIR
-if test -f $NVIM_INIT; then
-    mv $NVIM_INIT $NVIM_INIT.old
-fi
+backupOldConfig $NVIM_INIT
 echo "source $VIMRC" > $NVIM_INIT
 
 echo "---------- CONFIGS END ---------"

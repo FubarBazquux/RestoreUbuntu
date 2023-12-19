@@ -6,7 +6,7 @@ echo "---------- MANUAL INSTALLS START ----------"
 if ! dpkg -s google-chrome-stable &>/dev/null; then
     echo "Installing Chrome"
     wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1>/dev/null
-    apt-get install -y ./google-chrome-stable_current_amd64.deb 1>/dev/null
+    sudo apt-get install -y ./google-chrome-stable_current_amd64.deb 1>/dev/null
     rm google-chrome-stable_current_amd64.deb
 else
     echo "Skipping Chrome, already installed"
@@ -16,13 +16,13 @@ fi
 if ! dpkg -s psensor &>/dev/null; then
     echo "Installing psensor"
     if ! dpkg -s lm-sensors &>/dev/null; then
-        echo "Installing lm-sensors"
-        apt-get install -y lm-sensors 1>/dev/null
+        echo "Installing lm-sensors first"
+        sudo apt-get install -y lm-sensors 1>/dev/null
         sensors-detect
     else
         echo "Skipping lm-sensors, already installed"
     fi
-    apt-get install -y psensor 1>/dev/null
+    sudo apt-get install -y psensor 1>/dev/null
 else
     echo "Skipping psensor, already installed"
 fi
@@ -31,7 +31,7 @@ fi
 if ! dpkg -s syncthing &>/dev/null; then
     echo "Installing Syncthing"
     mkdir -p /etc/apt/keyrings
-    curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+    sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
     echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
     sudo apt-get update 1>/dev/null
     sudo apt-get install -y syncthing 1>/dev/null
@@ -44,7 +44,7 @@ if ! dpkg -s wavebox &>/dev/null; then
     echo "Installing Wavebox"
     wget https://download.wavebox.app/latest/stable/linux/deb
     mv deb wavebox.deb
-    apt-get install -y ./wavebox.deb 1>/dev/null
+    sudo apt-get install -y ./wavebox.deb 1>/dev/null
     rm wavebox.deb
 else
     echo "Skipping Wavebox, already installed"
