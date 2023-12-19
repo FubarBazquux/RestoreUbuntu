@@ -2,7 +2,7 @@
 
 backupOldConfig () {
     if test -f $1; then
-        mv $1 $1.old
+        mv $1 $1.old 2>&1 1>/dev/null
     fi
 }
 
@@ -14,40 +14,40 @@ CONFIGS_SUBMODULE_DIR=$PROJECT_DIR"/Configs"
 echo "Set up Git repos"
 CONFIGS_REPO=$HOME/Repos/Configs
 if ! test -d $CONFIGS_REPO; then
-    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO
+    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO 2>&1 1>/dev/null
 fi
 
 echo "Git"
 GIT_CONFIG_DIR=$HOME/.config/git
 GIT_CONF=$GIT_CONFIG_DIR/config
-mkdir --parents $GIT_CONFIG_DIR
+mkdir --parents $GIT_CONFIG_DIR 2>&1 1>/dev/null
 backupOldConfig $GIT_CONF
 backupOldConfig $HOME/.gitconfig
-echo "[include]" > $GIT_CONF
-echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig.common" >> $GIT_CONF
+echo "[include]" | tee $GIT_CONF 2>&1 1>/dev/null
+echo "    path = $CONFIGS_SUBMODULE_DIR/.gitconfig.common" | tee -a $GIT_CONF 2>&1 1>/dev/null
 
 echo "Bash"
 BASHRC=$HOME/.bashrc
 backupOldConfig $BASHRC
-echo "source $CONFIGS_SUBMODULE_DIR/.bashrc.common" > $BASHRC
+echo "source $CONFIGS_SUBMODULE_DIR/.bashrc.common" | tee $BASHRC 2>&1 1>/dev/null
 
 echo "Tmux"
 TMUX_CONFIG_DIR=$HOME/.config/tmux
 TMUX_CONF=$TMUX_CONFIG_DIR/tmux.conf
-mkdir --parents $TMUX_CONFIG_DIR
+mkdir --parents $TMUX_CONFIG_DIR 2>&1 1>/dev/null
 backupOldConfig $TMUX_CONF
-echo "source-file $CONFIGS_SUBMODULE_DIR/.tmux.conf.common" > $TMUX_CONF
+echo "source-file $CONFIGS_SUBMODULE_DIR/.tmux.conf.common" | tee $TMUX_CONF 2>&1 1>/dev/null
 
 echo "Vim"
 VIMRC=$HOME"/.vimrc"
 backupOldConfig $VIMRC
-echo "source $CONFIGS_SUBMODULE_DIR/.vimrc.common" > $VIMRC
+echo "source $CONFIGS_SUBMODULE_DIR/.vimrc.common" | tee $VIMRC 2>&1 1>/dev/null
 
 echo "Nvim"
 NVIM_CONFIG_DIR=$HOME"/.config/nvim"
 NVIM_INIT=$NVIM_CONFIG_DIR/init.vim
-mkdir --parents $NVIM_CONFIG_DIR
+mkdir --parents $NVIM_CONFIG_DIR 2>&1 1>/dev/null
 backupOldConfig $NVIM_INIT
-echo "source $VIMRC" > $NVIM_INIT
+echo "source $VIMRC" | tee $NVIM_INIT 2>&1 1>/dev/null
 
 echo "---------- CONFIGS END ---------"

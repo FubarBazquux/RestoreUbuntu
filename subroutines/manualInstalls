@@ -5,9 +5,9 @@ echo "---------- MANUAL INSTALLS START ----------"
 # Chrome
 if ! dpkg -s google-chrome-stable &>/dev/null; then
     echo "Installing Chrome"
-    wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 1>/dev/null
-    apt-get install -y ./google-chrome-stable_current_amd64.deb 1>/dev/null
-    rm google-chrome-stable_current_amd64.deb
+    wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb 2>&1 1>/dev/null
+    sudo apt-get install -y ./google-chrome-stable_current_amd64.deb 2>&1 1>/dev/null
+    rm google-chrome-stable_current_amd64.deb 2>&1 1>/dev/null
 else
     echo "Skipping Chrome, already installed"
 fi
@@ -15,12 +15,12 @@ fi
 # Syncthing
 if ! dpkg -s syncthing &>/dev/null; then
     echo "Installing Syncthing"
-    mkdir -p /etc/apt/keyrings
-    wget -q https://syncthing.net/release-key.gpg 1>/dev/null
-    mv release-key.gpg /etc/apt/keyrings/syncthing-archive-keyring.gpg
-    echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" > /etc/apt/sources.list.d/syncthing.list
-    apt-get update 1>/dev/null
-    apt-get install -y syncthing 1>/dev/null
+    sudo mkdir -p /etc/apt/keyrings 2>&1 1>/dev/null
+    wget -q https://syncthing.net/release-key.gpg 2>&1 1>/dev/null
+    sudo mv release-key.gpg /etc/apt/keyrings/syncthing-archive-keyring.gpg 2>&1 1>/dev/null
+    echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list 2>&1 1>/dev/null
+    sudo apt-get update 2>&1 1>/dev/null
+    sudo apt-get install -y syncthing 2>&1 1>/dev/null
 else
     echo "Skipping Syncthing, already installed"
 fi
@@ -28,10 +28,10 @@ fi
 # Wavebox
 if ! dpkg -s wavebox &>/dev/null; then
     echo "Installing Wavebox"
-    wget -q https://download.wavebox.app/latest/stable/linux/deb 1>/dev/null
-    mv deb wavebox.deb
-    apt-get install -y ./wavebox.deb 1>/dev/null
-    rm wavebox.deb
+    wget -q https://download.wavebox.app/latest/stable/linux/deb 2>&1 1>/dev/null
+    mv deb wavebox.deb 2>&1 1>/dev/null
+    sudo apt-get install -y ./wavebox.deb 2>&1 1>/dev/null
+    rm wavebox.deb 2>&1 1>/dev/null
 else
     echo "Skipping Wavebox, already installed"
 fi

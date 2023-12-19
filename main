@@ -4,10 +4,10 @@ echo "Start"
 
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
-sudo ./subroutines/update
-sudo ./subroutines/snaps/installSnaps
-sudo ./subroutines/apts/installApts
-sudo ./subroutines/manualInstalls
+./subroutines/update
+./subroutines/snaps/installSnaps
+./subroutines/apts/installApts
+./subroutines/manualInstalls
 ./subroutines/repos
 ./subroutines/configs $SCRIPT_DIR
 ./subroutines/backups/setup $SCRIPT_DIR

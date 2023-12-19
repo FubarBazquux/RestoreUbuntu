@@ -8,8 +8,8 @@ SCRIPTS_DIR=$HOME"/Documents/Scripts/"
 BACKUP_FILE=$SCRIPTS_DIR"weeklyBackup"
 if ! test -f $BACKUP_FILE; then
     echo "Placing backup script"
-    mkdir --parents $SCRIPTS_DIR
-    cp --no-clobber $MAIN_DIR"/subroutines/backups/weeklyBackup" $BACKUP_FILE
+    mkdir --parents $SCRIPTS_DIR 2>&1 1>/dev/null
+    cp $MAIN_DIR"/subroutines/backups/weeklyBackup" $BACKUP_FILE 2>&1 1>/dev/null
 else
     echo "Skipping placing backup script, already present"
 fi
