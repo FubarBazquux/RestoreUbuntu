@@ -11,12 +11,6 @@ echo "---------- CONFIGS START ----------"
 PROJECT_DIR=$1
 CONFIGS_SUBMODULE_DIR=$PROJECT_DIR"/Configs"
 
-echo "Set up Git repos"
-CONFIGS_REPO=$HOME/Repos/Configs
-if ! test -d $CONFIGS_REPO; then
-    git clone https://github.com/FubarBazquux/Configs.git $CONFIGS_REPO 2>&1 1>/dev/null
-fi
-
 echo "Git"
 GIT_CONFIG_DIR=$HOME/.config/git
 GIT_CONF=$GIT_CONFIG_DIR/config
