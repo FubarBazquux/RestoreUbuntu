@@ -4,12 +4,12 @@ echo "---------- BACKUP SCRIPT START ----------"
 
 MAIN_DIR=$1
 
-SCRIPTS_DIR=$HOME"/Documents/Scripts/"
-BACKUP_FILE=$SCRIPTS_DIR"weeklyBackup"
+SCRIPTS_DIR=$HOME/Documents/Scripts
+BACKUP_FILE=$SCRIPTS_DIR/weeklyBackup.sh
 if ! test -f $BACKUP_FILE; then
     echo "Placing backup script"
     mkdir --parents $SCRIPTS_DIR 2>&1 1>/dev/null
-    cp $MAIN_DIR"/subroutines/backups/weeklyBackup" $BACKUP_FILE 2>&1 1>/dev/null
+    cp $MAIN_DIR/subroutines/backups/weeklyBackup $BACKUP_FILE 2>&1 1>/dev/null
 else
     echo "Skipping placing backup script, already present"
 fi

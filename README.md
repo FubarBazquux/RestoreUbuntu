@@ -9,5 +9,16 @@ cd RestoreUbuntu
 
 Don't run in the background initially as a sudo prompt needs to be handled. After that, CTRL-Z if desired
 
+GitHub credentials setup:
+    git config --global credential.helper store
+Then do something that requires authentication, like pushing to a remote. It'll ask for username and access token, which will then be stored.
+
+AWS CLI setup:
+    aws configure
+
+Backup cron job:
+    crontab -e
+    0 0 * * MON /home/administrator/Documents/Scripts/weeklyBackup.sh
+
 Notes:
-Barrier is no longer maintained. Synergy is a paid alternative, but the active maintainers of Barrier have moved to a new project, input-leap, found at github.com/input-leap/input-leap. This is currently in development without any active releases, but once that has an official release it should be substituted for the Barrier package.
+Barrier is no longer maintained. Synergy is a paid alternative, but the active maintainers of Barrier have moved to a new project, input-leap, found at github.com/input-leap/input-leap. This is currently in development without any active releases, but once that has an official release it should be substituted for the Barrier package. Barrier does not support Wayland, so it's tough luck until input-leap can get it supported.
