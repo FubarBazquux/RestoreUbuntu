@@ -2,7 +2,7 @@
 
 backupOldConfig () {
     if test -f $1; then
-        mv $1 $1.old 2>&1 1>/dev/null
+        mv -n $1 $1.old 2>&1 1>/dev/null
     fi
 }
 
