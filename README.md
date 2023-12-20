@@ -9,6 +9,8 @@ cd RestoreUbuntu
 
 Don't run in the background initially as a sudo prompt needs to be handled. After that, CTRL-Z if desired
 
+The OpenRGB install currently points to the package created for Debian Bookworm, which is what Ubuntu 23.10 is built from. Change this if the target operating system is different.
+
 GitHub credentials setup:
     git config --global credential.helper store
 Then do something that requires authentication, like pushing to a remote. It'll ask for username and access token, which will then be stored.
