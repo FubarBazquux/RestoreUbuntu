@@ -22,5 +22,7 @@ Backup cron job:
     crontab -e
     0 0 * * MON /home/administrator/Documents/Scripts/weeklyBackup.sh
 
+Set up Google Drive access through Settings -> Online Accounts
+
 Notes:
 Barrier is no longer maintained. Synergy is a paid alternative, but the active maintainers of Barrier have moved to a new project, input-leap, found at github.com/input-leap/input-leap. This is currently in development without any active releases, but once that has an official release it should be substituted for the Barrier package. Barrier does not support Wayland, so it's tough luck until input-leap can get it supported.
