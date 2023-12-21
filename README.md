@@ -53,5 +53,10 @@ crontab -e
 ### Google Drive integration
 Settings -> Online Accounts
 
+### Syncthing
+Search apps for Syncthing
+Run the start app first, then the web UI
+Configure as desired. Remember that delete commands are synced just as files are, so if you want to delete from one device but not another, disconnect the folder sync or move/copy the files elsewhere on the machine that needs them before deleting anything.
+
 ## Notes:
 Barrier is no longer maintained. Synergy is a paid alternative, but the active maintainers of Barrier have moved to a new project, input-leap, found at github.com/input-leap/input-leap. This is currently in development without any active releases, but once that has an official release it should be substituted for the Barrier package. Barrier does not support Wayland, so it's tough luck until input-leap can get it supported.
