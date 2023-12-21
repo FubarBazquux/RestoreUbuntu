@@ -1,12 +1,12 @@
-Instructions:
+# H1 Instructions:
 
-Partition setup:\
+# H2 Partition setup:
 512 MiB fat32 parition for EFI at the start of the OS disk, `/boot/efi`\
 RAM size x2 linux-swap partition\
 Rest of OS drive as ext4 for `/`\
 Data drive as ext4 for `/home/`
 
-Ensure swap parition is being loaded correctly:\
+# H2 Ensure swap parition is being loaded correctly:
 Get swap UUID from GParted or something
 ```
 sudo -H nvim /etc/fstab
@@ -14,6 +14,10 @@ UUID=[swap UUID]	none	swap	sw	0	0
 ```
 Remove any unwanted swapfile mountings, e.g. `/swap.img`, then remove any of those files after a reboot to ensure that the swap partition is working correctly: `swapon --show`
 
+# H2 Pre-run checks
+The OpenRGB install currently points to the package created for Debian Bookworm, which is what Ubuntu 23.10 is built from. Change this if the target operating system is different.
+
+# H2 Run script:
 ```
 sudo apt update
 sudo apt install git -y
@@ -26,8 +30,7 @@ cd RestoreUbuntu
 
 Don't run in the background initially as a sudo prompt needs to be handled. After that, CTRL-Z if desired.
 
-The OpenRGB install currently points to the package created for Debian Bookworm, which is what Ubuntu 23.10 is built from. Change this if the target operating system is different.
-
+# H2 After-run tweaks
 GitHub credentials setup:
 ```
 git config --global credential.helper store
