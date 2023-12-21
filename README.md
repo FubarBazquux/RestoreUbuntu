@@ -33,24 +33,24 @@ cd RestoreUbuntu
 Don't run in the background initially as a sudo prompt needs to be handled. After that, CTRL-Z if desired.
 
 ## After-run tweaks
-###GitHub credentials setup
+### GitHub credentials setup
 ```
 git config --global credential.helper store
 ```
 Then do something that requires authentication, like pushing to a remote. It'll ask for username and access token, which will then be stored.
 
-###AWS CLI setup
+### AWS CLI setup
 ```
 aws configure
 ```
 
-###Backup cron job
+### Backup cron job
 ```
 crontab -e
 0 0 * * MON /home/administrator/Documents/Scripts/weeklyBackup.sh
 ```
 
-###Google Drive integration
+### Google Drive integration
 Settings -> Online Accounts
 
 ## Notes:
