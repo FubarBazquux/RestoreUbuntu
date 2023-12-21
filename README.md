@@ -1,12 +1,12 @@
-# H1 Instructions:
+# Instructions:
 
-# H2 Partition setup:
+## Partition setup:
 512 MiB fat32 parition for EFI at the start of the OS disk, `/boot/efi`\
 RAM size x2 linux-swap partition\
 Rest of OS drive as ext4 for `/`\
 Data drive as ext4 for `/home/`
 
-# H2 Ensure swap parition is being loaded correctly:
+## Ensure swap parition is being loaded correctly:
 Get swap UUID from GParted or something
 ```
 sudo -H nvim /etc/fstab
@@ -14,10 +14,10 @@ UUID=[swap UUID]	none	swap	sw	0	0
 ```
 Remove any unwanted swapfile mountings, e.g. `/swap.img`, then remove any of those files after a reboot to ensure that the swap partition is working correctly: `swapon --show`
 
-# H2 Pre-run checks
+## Pre-run checks
 The OpenRGB install currently points to the package created for Debian Bookworm, which is what Ubuntu 23.10 is built from. Change this if the target operating system is different.
 
-# H2 Run script:
+## Run script:
 ```
 sudo apt update
 sudo apt install git -y
@@ -30,7 +30,7 @@ cd RestoreUbuntu
 
 Don't run in the background initially as a sudo prompt needs to be handled. After that, CTRL-Z if desired.
 
-# H2 After-run tweaks
+## After-run tweaks
 GitHub credentials setup:
 ```
 git config --global credential.helper store
@@ -50,5 +50,5 @@ crontab -e
 
 Set up Google Drive access through Settings -> Online Accounts
 
-Notes:\
+## Notes:
 Barrier is no longer maintained. Synergy is a paid alternative, but the active maintainers of Barrier have moved to a new project, input-leap, found at github.com/input-leap/input-leap. This is currently in development without any active releases, but once that has an official release it should be substituted for the Barrier package. Barrier does not support Wayland, so it's tough luck until input-leap can get it supported.
