@@ -1,11 +1,23 @@
 Instructions:
-sudo apt update
-sudo apt install git -y
-mkdir ~/Repos
-cd ~/Repos
-git clone https://github.com/FubarBazquux/RestoreUbuntu.git
-cd RestoreUbuntu
-./main > RestoreUbuntu.log
+Partition setup:
+512 MiB fat32 parition for EFI at the start of the OS disk, `/boot/efi`
+RAM size x2 linux-swap partition
+Rest of OS drive as ext4 for `/`
+Data drive as ext4 for `/home/`
+
+Ensure swap parition is being loaded correctly:
+Get swap UUID from GParted or something
+    sudo -H nvim /etc/fstab
+    UUID=[swap UUID]	none	swap	sw	0	0
+Remove any unwanted swapfile mountings, e.g. `/swap.img`, then remove any of those files after a reboot to ensure that the swap partition is working correctly: `swapon --show`
+
+    sudo apt update
+    sudo apt install git -y
+    mkdir ~/Repos
+    cd ~/Repos
+    git clone https://github.com/FubarBazquux/RestoreUbuntu.git
+    cd RestoreUbuntu
+    ./main > RestoreUbuntu.log
 
 Don't run in the background initially as a sudo prompt needs to be handled. After that, CTRL-Z if desired
 
