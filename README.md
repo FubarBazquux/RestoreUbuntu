@@ -17,7 +17,9 @@ Reboot to ensure that the swap partition is working correctly: `swapon --show'\
 Remove any unwanted and no longer used swap files.
 
 ## Pre-run checks
-The OpenRGB install currently points to the package created for Debian Bookworm, which is what Ubuntu 23.10 is built from. Change this if the target operating system is different.
+The OpenRGB install currently points to the package created for Debian Bookworm, which is what Ubuntu 23.10 is built from. Change this if the target operating system is different: https://openrgb.org/releases.html
+
+The Video DownloadHelper Companion App currently points directly to a specific version. Ensure it's the latest one: https://github.com/aclap-dev/vdhcoapp
 
 ## Run script:
 ```

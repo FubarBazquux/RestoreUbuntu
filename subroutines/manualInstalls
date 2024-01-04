@@ -35,6 +35,16 @@ else
     echo "Skipping Syncthing, already installed"
 fi
 
+# Video DownloadHelper Companion App
+if ! dpkg -s net.downloadhelper.coapp &>/dev/null; then
+    echo "Installing DownloadHelper Companion App"
+    wget -q https://github.com/aclap-dev/vdhcoapp/releases/download/v2.0.10/vdhcoapp-2.0.10-linux-x86_64.deb 2>&1 1>/dev/null
+    sudo dpkg -i vdhcoapp-2.0.10-linux-x86_64.deb 2>&1 1>/dev/null
+    rm vdhcoapp-2.0.10-linux-x86_64.deb
+else
+    echo "Skipping Video DownloadHelper Companion App, already installed"
+fi
+
 # Wavebox
 if ! dpkg -s wavebox &>/dev/null; then
     echo "Installing Wavebox"
