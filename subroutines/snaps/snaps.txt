@@ -8,6 +8,6 @@ nvim --classic
 spotify
 steam
 sublime-text --classic
-tmux-non-dead --classic
+tmux --classic
 vlc
 zoom-client
